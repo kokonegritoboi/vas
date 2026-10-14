@@ -1,0 +1,74 @@
+/* base: el escenario ahora es flex con scroll seguro, el marco no se encoge a la fuerza */
+.stage{display:flex;justify-content:center;align-items:safe center;overflow-y:auto;overflow-x:hidden;overscroll-behavior:contain}
+.phone{flex:0 1 430px}
+/* ---------- Responsive: celular a pantalla completa, tablet y escritorio con marco, pantallas bajas con scroll ---------- */
+.phone{min-width:0}
+.screen>*{min-width:0}
+.c-text,.h-xl,.h-l,.tile h2,.sheet h2,.turn b{overflow-wrap:anywhere}
+
+/* Tablet y escritorio: marco un poco más grande y más alto */
+@media (min-width:700px) and (min-height:780px){
+  .phone{flex-basis:480px;max-width:480px;max-height:min(960px,100%)}
+}
+@media (min-width:1200px) and (min-height:900px){
+  .phone{flex-basis:520px;max-width:520px;max-height:min(1000px,100%)}
+  .c-text{font-size:32px}
+  .h-xl{font-size:50px}
+}
+
+/* Celulares: la app ocupa toda la pantalla, sin marco */
+@media (max-width:520px){
+  body{padding-inline:0}
+  .stage{padding-block:0}
+  .phone{flex-basis:100%;max-width:none;max-height:none;min-height:0;border:0;border-radius:0}
+  .screen{padding-inline:max(16px,env(safe-area-inset-left,0px)) max(16px,env(safe-area-inset-right,0px))}
+  .top{padding-inline:16px}
+}
+
+/* Pantallas bajas (celular horizontal, ventanas chaparras): el contenido hace scroll sin recortarse */
+@media (max-height:640px){
+  .phone{height:auto;min-height:640px;max-height:none}
+  .stage{align-items:flex-start}
+  .deck{min-height:240px}
+  .badge18{width:96px;height:96px;font-size:36px}
+  .avbig{width:min(58vw,190px)}
+  .count{font-size:64px}
+}
+@media (max-height:640px) and (min-width:521px){
+  .phone{border-radius:24px}
+}
+
+/* Celulares angostos (320–374px) */
+@media (max-width:374px){
+  .h-xl{font-size:clamp(28px,9.4vw,34px)}
+  .h-l{font-size:clamp(24px,8vw,28px)}
+  .tile{padding:16px}
+  .tile h2{font-size:27px}
+  .tile .arrow{width:32px;height:32px;right:14px;top:14px}
+  .join input{letter-spacing:.18em;font-size:18px;padding:0 14px}
+  .join button{padding:0 14px}
+  .btn{font-size:15px;padding:0 16px}
+  .lvl b{font-size:18px}
+  .lvl{padding:12px 13px;gap:10px}
+  .dg{font-size:38px;border-radius:16px}
+  .code{gap:7px}
+  .card{padding:14px 15px;border-radius:26px}
+  .c-text{font-size:clamp(19px,6vw,23px)}
+  .tag{font-size:12px;padding:5px 10px}
+  .sb{font-size:11.5px;padding:9px 2px}
+  .sb small{font-size:8.5px}
+  .pick button{font-size:14px;padding:7px 9px 7px 7px}
+  .count{font-size:70px}
+  .banner b{font-size:22px}
+  .end-call b{font-size:25px}
+  .nameIn{font-size:28px}
+  .sheet{padding:18px 14px 20px}
+  .wm{font-size:17px}
+  .pill-btn{padding:7px 10px;font-size:10px}
+  .brow .nmx{width:48px}
+}
+
+/* Pantallas grandes con puntero: tipografía de cartas más cómoda */
+@media (hover:hover) and (min-width:700px){
+  .card{padding:22px 24px}
+}
