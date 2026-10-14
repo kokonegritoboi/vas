@@ -25,10 +25,9 @@
   .top{padding-inline:16px}
 }
 
-/* Pantallas bajas (celular horizontal, ventanas chaparras): el contenido hace scroll sin recortarse */
+/* Pantallas bajas (celular chico u horizontal, ventanas chaparras): el marco mide lo que la pantalla y el contenido hace scroll por dentro */
 @media (max-height:640px){
-  .phone{height:auto;min-height:640px;max-height:none}
-  .stage{align-items:flex-start}
+  .phone{min-height:0;max-height:none}
   .deck{min-height:240px}
   .badge18{width:96px;height:96px;font-size:36px}
   .avbig{width:min(58vw,190px)}
