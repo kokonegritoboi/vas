@@ -1,4 +1,4 @@
-/* base: el escenario ahora es flex con scroll seguro, el marco no se encoge a la fuerza */
+/* base: el escenario es flex con scroll seguro */
 .stage{display:flex;justify-content:center;align-items:safe center;overflow-y:auto;overflow-x:hidden;overscroll-behavior:contain}
 .phone{flex:0 1 430px}
 /* ---------- Responsive: celular a pantalla completa, tablet y escritorio con marco, pantallas bajas con scroll ---------- */
@@ -6,14 +6,27 @@
 .screen>*{min-width:0}
 .c-text,.h-xl,.h-l,.tile h2,.sheet h2,.turn b{overflow-wrap:anywhere}
 
-/* Tablet (700px+ de ancho y 700px+ de alto): marco mas ancho y tipografia, botones y cartas mas grandes */
+/* Pantalla completa en cualquier tamano: sin marco ni franjas negras, el contenido se centra en una columna */
+body{padding-inline:0}
+.stage{padding:0}
+.phone{--col:100%;flex:1 1 100%;max-width:none;min-height:0;max-height:none;border:0;border-radius:0;box-shadow:none}
+.phone::before{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;background:radial-gradient(60% 55% at 12% 0%,color-mix(in srgb,var(--lv) 26%,transparent),transparent 70%),radial-gradient(55% 50% at 92% 100%,color-mix(in srgb,var(--lv) 20%,transparent),transparent 70%)}
+.screen{padding-inline:max(18px,calc((100% - var(--col))/2))}
+.top{padding-inline:max(18px,calc((100% - var(--col))/2))}
+.code-chip{border-color:var(--acc);color:var(--acc)}
+.code-chip b{font-family:var(--f-display);font-weight:900;font-size:1.2em;letter-spacing:.14em;margin-left:2px}
+
+/* Tablet y arriba: columna centrada y tipografia, botones y cartas mas grandes */
+@media (min-width:700px){
+  .phone{--col:660px}
+  .sheet-wrap{justify-content:center}
+  .sheet{max-width:660px}
+}
 @media (min-width:700px) and (min-height:700px){
-  .stage{padding-block:20px}
-  .phone{flex-basis:560px;max-width:560px;max-height:min(940px,100%);border-radius:38px}
   body{font-size:16px}
-  .screen{padding:74px 28px 26px;gap:16px}
+  .screen{padding-top:74px;padding-bottom:26px;gap:16px}
   .game{padding-top:70px}
-  .top{padding:18px 28px}
+  .top{padding-block:18px}
   .wm{font-size:23px}
   .pill-btn{padding:10px 16px;font-size:12px}
   .h-xl{font-size:clamp(46px,6vw,56px)}
@@ -47,14 +60,18 @@
   .sheet h2{font-size:30px}
   .brow .nmx{width:80px}
 }
-/* Escritorio (1100px+ de ancho y 820px+ de alto): marco mas grande con sombra */
-@media (min-width:1100px) and (min-height:820px){
-  .phone{flex-basis:620px;max-width:620px;max-height:min(880px,100%);box-shadow:0 40px 120px #000c}
-  .screen{padding:78px 34px 30px}
-  .top{padding:20px 34px}
+/* Escritorio: columna mas ancha y texto mayor */
+@media (min-width:1100px) and (min-height:700px){
+  .phone{--col:800px}
   .h-xl{font-size:60px}
   .c-text{font-size:42px}
   .tile h2{font-size:44px}
+}
+/* Inicio en tres columnas cuando hay ancho */
+@media (min-width:1000px){
+  .screen:has(.tile){padding-inline:max(18px,calc((100% - 1080px)/2));display:grid;grid-template-columns:repeat(3,minmax(0,1fr));align-content:start;gap:20px}
+  .screen:has(.tile)>.hello,.screen:has(.tile)>.tk,.screen:has(.tile)>.marq,.screen:has(.tile)>.back{grid-column:1/-1}
+  .screen:has(.tile) .tile{min-height:250px}
 }
 /* Celulares: la app ocupa toda la pantalla, sin marco */
 @media (max-width:520px){
@@ -72,9 +89,6 @@
   .badge18{width:96px;height:96px;font-size:36px}
   .avbig{width:min(58vw,190px)}
   .count{font-size:64px}
-}
-@media (max-height:640px) and (min-width:521px){
-  .phone{border-radius:24px}
 }
 
 /* Celulares angostos (320–374px) */

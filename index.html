@@ -1,8 +1,8 @@
 <!doctype html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>VAS</title><style>body{background:#0A0A0C;color:#888;font:14px sans-serif;display:grid;place-items:center;height:100vh;margin:0}</style></head><body>Cargando VAS...<script>
 (async()=>{const C={'l':5,'a':10,'h':4};
 const get=async k=>(await Promise.all(Array.from({length:C[k]},(_,i)=>fetch('p/'+k+String(i).padStart(2,'0')+'.txt').then(r=>{if(!r.ok)throw new Error(r.status);return r.text()})))).join('');
-try{const [h,l,a,r]=await Promise.all([get('h'),get('l'),get('a'),fetch('p/r.css',{cache:'no-cache'}).then(x=>x.ok?x.text():'').catch(()=>'')]);
+try{const [h,l,a,r,x]=await Promise.all([get('h'),get('l'),get('a'),fetch('p/r.css',{cache:'no-cache'}).then(x=>x.ok?x.text():'').catch(()=>''),fetch('p/x.js',{cache:'no-cache'}).then(x=>x.ok?x.text():'').catch(()=>'')]);
 document.open();document.write(h);document.close();const st=document.createElement('style');st.textContent=r;document.head.appendChild(st);document.head.insertAdjacentHTML('beforeend','<style>[data-act=demo-ticket],[data-act=names],[data-act=to-bank]{display:none!important}.top{background:linear-gradient(var(--bg) 82%,transparent);padding-bottom:24px!important}</style>');
 const run=(t,cb)=>{const s=document.createElement('script');s.src=URL.createObjectURL(new Blob([t],{type:'text/javascript'}));s.onload=cb;document.body.appendChild(s)};
-run(l,()=>run(a));}catch(e){document.body.textContent='Error al cargar: '+e.message}})();
+run(l,()=>run(a,()=>{if(x)run(x)}));}catch(e){document.body.textContent='Error al cargar: '+e.message}})();
 </script></body></html>
