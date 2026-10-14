@@ -6,16 +6,56 @@
 .screen>*{min-width:0}
 .c-text,.h-xl,.h-l,.tile h2,.sheet h2,.turn b{overflow-wrap:anywhere}
 
-/* Tablet y escritorio: marco un poco más grande y más alto */
-@media (min-width:700px) and (min-height:780px){
-  .phone{flex-basis:480px;max-width:480px;max-height:min(960px,100%)}
+/* Tablet (700px+ de ancho y 700px+ de alto): marco mas ancho y tipografia, botones y cartas mas grandes */
+@media (min-width:700px) and (min-height:700px){
+  .stage{padding-block:20px}
+  .phone{flex-basis:560px;max-width:560px;max-height:min(940px,100%);border-radius:38px}
+  body{font-size:16px}
+  .screen{padding:74px 28px 26px;gap:16px}
+  .game{padding-top:70px}
+  .top{padding:18px 28px}
+  .wm{font-size:23px}
+  .pill-btn{padding:10px 16px;font-size:12px}
+  .h-xl{font-size:clamp(46px,6vw,56px)}
+  .h-l{font-size:clamp(34px,4.5vw,42px)}
+  .lab{font-size:12px}
+  .btn{min-height:60px;font-size:19px}
+  .tile{padding:26px}
+  .tile h2{font-size:40px}
+  .tile p{font-size:15px}
+  .join input{height:54px;font-size:22px}
+  .join button{height:54px;font-size:17px;padding:0 26px}
+  .lvl{padding:18px 20px}
+  .lvl b{font-size:23px}
+  .lvl span.d{font-size:14px}
+  .chip{padding:11px 17px;font-size:16px}
+  .dg{max-height:112px;font-size:58px}
+  .pl{font-size:19px}
+  .nameIn{font-size:42px}
+  .card{padding:26px 30px;border-radius:34px}
+  .c-text{font-size:clamp(30px,3.6vw,38px)}
+  .tag{font-size:15px;padding:7px 15px}
+  .tema,.lv,.drinks{font-size:12.5px}
+  .turn b{font-size:26px}
+  .sb{font-size:15px;padding:14px 6px}
+  .sb small{font-size:10.5px}
+  .pick button{font-size:18px}
+  .count{font-size:104px}
+  .banner b{font-size:30px}
+  .banner span{font-size:15px}
+  .sheet{padding:28px 28px 32px}
+  .sheet h2{font-size:30px}
+  .brow .nmx{width:80px}
 }
-@media (min-width:1200px) and (min-height:900px){
-  .phone{flex-basis:520px;max-width:520px;max-height:min(1000px,100%)}
-  .c-text{font-size:32px}
-  .h-xl{font-size:50px}
+/* Escritorio (1100px+ de ancho y 820px+ de alto): marco mas grande con sombra */
+@media (min-width:1100px) and (min-height:820px){
+  .phone{flex-basis:620px;max-width:620px;max-height:min(880px,100%);box-shadow:0 40px 120px #000c}
+  .screen{padding:78px 34px 30px}
+  .top{padding:20px 34px}
+  .h-xl{font-size:60px}
+  .c-text{font-size:42px}
+  .tile h2{font-size:44px}
 }
-
 /* Celulares: la app ocupa toda la pantalla, sin marco */
 @media (max-width:520px){
   body{padding-inline:0}
@@ -65,9 +105,5 @@
   .wm{font-size:17px}
   .pill-btn{padding:7px 10px;font-size:10px}
   .brow .nmx{width:48px}
-}
-
-/* Pantallas grandes con puntero: tipografía de cartas más cómoda */
-@media (hover:hover) and (min-width:700px){
-  .card{padding:22px 24px}
+  .lvpill{font-size:10px;gap:5px;padding:4px 8px;white-space:nowrap;letter-spacing:0}
 }
