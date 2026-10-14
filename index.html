@@ -2,7 +2,7 @@
 (async()=>{const C={'l':5,'a':10,'h':4};
 const get=async k=>(await Promise.all(Array.from({length:C[k]},(_,i)=>fetch('p/'+k+String(i).padStart(2,'0')+'.txt').then(r=>{if(!r.ok)throw new Error(r.status);return r.text()})))).join('');
 try{const [h,l,a]=await Promise.all([get('h'),get('l'),get('a')]);
-document.open();document.write(h);document.close();
+document.open();document.write(h);document.close();document.head.insertAdjacentHTML('beforeend','<style>[data-act=demo-ticket]{display:none!important}</style>');
 const run=(t,cb)=>{const s=document.createElement('script');s.src=URL.createObjectURL(new Blob([t],{type:'text/javascript'}));s.onload=cb;document.body.appendChild(s)};
 run(l,()=>run(a));}catch(e){document.body.textContent='Error al cargar: '+e.message}})();
 </script></body></html>
